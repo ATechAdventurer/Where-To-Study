@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
   password: String,
   passwordResetToken: String,
   passwordResetExpires: Date,
-
+  //TODO Remove unused things
   snapchat: String,
   facebook: String,
   twitter: String,

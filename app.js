@@ -34,7 +34,7 @@ const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
-
+const placeController = require('./controllers/place');
 /**
  * API keys and Passport configuration.
  */
@@ -142,7 +142,8 @@ app.post('/account/profile', passportConfig.isAuthenticated, userController.post
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
-
+app.get('/places', placeController.getPlaces);
+app.post('/places/create', placeController.addnewPlaces);
 /**
  * API examples routes.
  */

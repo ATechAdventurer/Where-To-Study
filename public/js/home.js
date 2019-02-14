@@ -1,4 +1,4 @@
-if (window.location.href == "https://wheretostudy.app/") {
+if (window.location.href == "https://www.wheretostudy.app/") {
 
   mapboxgl.accessToken = 'pk.eyJ1IjoibWFub3N0ZWVsZSIsImEiOiJjamhtanE1OWswZWFmM2RyeDd3M3pleDdnIn0.Ccam63uwLV2GkhuDt-8DlQ'; // replace this with your access token
   var map = new mapboxgl.Map({

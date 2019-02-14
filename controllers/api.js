@@ -2,17 +2,17 @@ const { promisify } = require('util');
 const request = require('request');
 const cheerio = require('cheerio');
 const graph = require('fbgraph');
-const { LastFmNode } = require('lastfm');
-const tumblr = require('tumblr.js');
-const GitHub = require('@octokit/rest');
-const Twit = require('twit');
-const stripe = require('stripe')(process.env.STRIPE_SKEY);
+//const { LastFmNode } = require('lastfm');
+//const tumblr = require('tumblr.js');
+//const GitHub = require('@octokit/rest');
+//const Twit = require('twit');
+//const stripe = require('stripe')(process.env.STRIPE_SKEY);
 //const twilio = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
-const Linkedin = require('node-linkedin')(process.env.LINKEDIN_ID, process.env.LINKEDIN_SECRET, process.env.LINKEDIN_CALLBACK_URL);
-const clockwork = require('clockwork')({ key: process.env.CLOCKWORK_KEY });
-const paypal = require('paypal-rest-sdk');
-const lob = require('lob')(process.env.LOB_KEY);
-const ig = require('instagram-node').instagram();
+//const Linkedin = require('node-linkedin')(process.env.LINKEDIN_ID, process.env.LINKEDIN_SECRET, process.env.LINKEDIN_CALLBACK_URL);
+//const clockwork = require('clockwork')({ key: process.env.CLOCKWORK_KEY });
+//const paypal = require('paypal-rest-sdk');
+//const lob = require('lob')(process.env.LOB_KEY);
+//const ig = require('instagram-node').instagram();
 const axios = require('axios');
 
 /**
@@ -58,7 +58,7 @@ exports.getFoursquare = async (req, res, next) => {
 /**
  * GET /api/tumblr
  * Tumblr API example.
- */
+ *
 exports.getTumblr = (req, res, next) => {
   const token = req.user.tokens.find(token => token.kind === 'tumblr');
   const client = tumblr.createClient({
@@ -80,7 +80,7 @@ exports.getTumblr = (req, res, next) => {
 /**
  * GET /api/facebook
  * Facebook API example.
- */
+ *
 exports.getFacebook = (req, res, next) => {
   const token = req.user.tokens.find(token => token.kind === 'facebook');
   graph.setAccessToken(token.accessToken);
@@ -115,7 +115,7 @@ exports.getScraping = (req, res, next) => {
 /**
  * GET /api/github
  * GitHub API Example.
- */
+ *
 exports.getGithub = async (req, res, next) => {
   const github = new GitHub();
   try {
@@ -164,7 +164,7 @@ exports.getNewYorkTimes = (req, res, next) => {
 /**
  * GET /api/lastfm
  * Last.fm API example.
- */
+ 
 exports.getLastfm = async (req, res, next) => {
   const lastfm = new LastFmNode({
     api_key: process.env.LASTFM_KEY,
@@ -247,7 +247,7 @@ exports.getLastfm = async (req, res, next) => {
 /**
  * GET /api/twitter
  * Twitter API example.
- */
+ 
 exports.getTwitter = async (req, res, next) => {
   const token = req.user.tokens.find(token => token.kind === 'twitter');
   const T = new Twit({
@@ -274,7 +274,7 @@ exports.getTwitter = async (req, res, next) => {
 /**
  * POST /api/twitter
  * Post a tweet.
- */
+ 
 exports.postTwitter = (req, res, next) => {
   req.assert('tweet', 'Tweet cannot be empty').notEmpty();
 
@@ -302,7 +302,7 @@ exports.postTwitter = (req, res, next) => {
 /**
  * GET /api/steam
  * Steam API example.
- */
+ *
 exports.getSteam = async (req, res, next) => {
   const steamId = req.user.steam;
   const params = { l: 'english', steamid: steamId, key: process.env.STEAM_KEY };
@@ -365,7 +365,7 @@ exports.getSteam = async (req, res, next) => {
 /**
  * GET /api/stripe
  * Stripe API example.
- */
+ 
 exports.getStripe = (req, res) => {
   res.render('api/stripe', {
     title: 'Stripe API',
@@ -376,7 +376,7 @@ exports.getStripe = (req, res) => {
 /**
  * POST /api/stripe
  * Make a payment.
- */
+ 
 exports.postStripe = (req, res) => {
   const { stripeToken, stripeEmail } = req.body;
   stripe.charges.create({
@@ -433,7 +433,7 @@ exports.postTwilio = (req, res, next) => {
 /**
  * GET /api/clockwork
  * Clockwork SMS API example.
- */
+ 
 exports.getClockwork = (req, res) => {
   res.render('api/clockwork', {
     title: 'Clockwork SMS API'
@@ -443,7 +443,7 @@ exports.getClockwork = (req, res) => {
 /**
  * POST /api/clockwork
  * Send a text message using Clockwork SMS
- */
+ 
 exports.postClockwork = (req, res, next) => {
   const message = {
     To: req.body.telephone,
@@ -460,7 +460,7 @@ exports.postClockwork = (req, res, next) => {
 /**
  * GET /api/linkedin
  * LinkedIn API example.
- */
+ 
 exports.getLinkedin = (req, res, next) => {
   const token = req.user.tokens.find(token => token.kind === 'linkedin');
   const linkedin = Linkedin.init(token.accessToken);
@@ -476,7 +476,7 @@ exports.getLinkedin = (req, res, next) => {
 /**
  * GET /api/instagram
  * Instagram API example.
- */
+ 
 exports.getInstagram = async (req, res, next) => {
   const token = req.user.tokens.find(token => token.kind === 'instagram');
   ig.use({ client_id: process.env.INSTAGRAM_ID, client_secret: process.env.INSTAGRAM_SECRET });
@@ -502,7 +502,7 @@ exports.getInstagram = async (req, res, next) => {
 /**
  * GET /api/paypal
  * PayPal SDK example.
- */
+ 
 exports.getPayPal = (req, res, next) => {
   paypal.configure({
     mode: 'sandbox',
@@ -545,7 +545,7 @@ exports.getPayPal = (req, res, next) => {
 /**
  * GET /api/paypal/success
  * PayPal SDK example.
- */
+ 
 exports.getPayPalSuccess = (req, res) => {
   const { paymentId } = req.session;
   const paymentDetails = { payer_id: req.query.PayerID };
@@ -560,7 +560,7 @@ exports.getPayPalSuccess = (req, res) => {
 /**
  * GET /api/paypal/cancel
  * PayPal SDK example.
- */
+ 
 exports.getPayPalCancel = (req, res) => {
   req.session.paymentId = null;
   res.render('api/paypal', {
@@ -572,7 +572,7 @@ exports.getPayPalCancel = (req, res) => {
 /**
  * GET /api/lob
  * Lob API example.
- */
+ 
 exports.getLob = (req, res, next) => {
   lob.usZipLookups.lookup({ zip_code: '94107' }, (err, zipdetails) => {
     if (err) { return next(err); }
@@ -602,7 +602,7 @@ exports.postFileUpload = (req, res) => {
 /**
  * GET /api/pinterest
  * Pinterest API example.
- */
+ *
 exports.getPinterest = (req, res, next) => {
   const token = req.user.tokens.find(token => token.kind === 'pinterest');
   request.get({ url: 'https://api.pinterest.com/v1/me/boards/', qs: { access_token: token.accessToken }, json: true }, (err, request, body) => {
@@ -617,7 +617,7 @@ exports.getPinterest = (req, res, next) => {
 /**
  * POST /api/pinterest
  * Create a pin.
- */
+ *
 exports.postPinterest = (req, res, next) => {
   req.assert('board', 'Board is required.').notEmpty();
   req.assert('note', 'Note cannot be blank.').notEmpty();

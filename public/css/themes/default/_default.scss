@@ -108,5 +108,7 @@
   left: calc(-1 * (100vw - 100%));
   position: absolute;
   width: 100vw;
+  margin-left: -15px;
+  margin-top: -15px;
   right: calc(-1 * (100vw - 100%));
 }

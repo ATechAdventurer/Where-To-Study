@@ -3,7 +3,6 @@ const Place = require('../models/Place');
 const User = require('../models/User');
 const toTitleCase = require('../utils/toTitleCase');
 
-const randomBytesAsync = promisify(crypto.randomBytes);
 
 /**
  * GET /places

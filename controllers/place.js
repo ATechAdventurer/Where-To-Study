@@ -27,10 +27,10 @@ exports.getPlaces = (req, res) => {
  }
 
 /**
- * POST /places
+ * POST /places/create
  * Create a new local account.
  */
-exports.addnewPlaces = (req, res, next) => {
+exports.addnewPlaces = (req, res, next, api = false) => {
     //TODO: Add validation
     User.findOne({ email: req.body.email }, (err, foundUser) => {
         if (err) { return next(err); }
@@ -48,8 +48,13 @@ exports.addnewPlaces = (req, res, next) => {
                 submitedBy: foundUser._id
             });
             Place.save((err) => {
-                if (err) { return next(err); }
-                res.redirect('/places');
+                if(api == true){
+                    res.status(201).send({msg: "success"});
+                }else{
+                    if (err) { return next(err); }
+                    res.redirect('/places');
+                }
+                
             })
         }
     };

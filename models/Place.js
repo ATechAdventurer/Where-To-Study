@@ -10,7 +10,8 @@ const placeSchema = new mongoose.Schema({
     },
     address: String,
     website: String,
-    tags: Array
+    tags: Array,
+    submitedBy: mongoose.Schema.Types.ObjectId
 },{ timestamps: true })
 
 const Place = mongoose.model('Place', placeSchema);

@@ -16,7 +16,10 @@
   box-shadow: none;
 }
 
-.btn-raised, .btn-raised:focus, .btn-raised:active, .btn-raised:hover {
+.btn-raised,
+.btn-raised:focus,
+.btn-raised:active,
+.btn-raised:hover {
   color: rgb(51, 51, 51);
   background-image: linear-gradient(to bottom, #ffffff 60%, #f8f8f8 100%);
   border-color: rgb(204, 204, 204);
@@ -45,8 +48,9 @@
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   background: #ffffff;
   opacity: 0.9;
+
   .navbar-nav {
-    > li > a {
+    >li>a {
       font-size: 12px;
       font-weight: 500;
       text-transform: uppercase;
@@ -54,22 +58,26 @@
       padding-top: 10px;
       padding-bottom: 10px;
     }
+
     .nav-link {
       color: black;
       padding-left: 15px;
       padding-right: 15px;
     }
   }
+
   .navbar-brand {
     color: $navbar-light-color;
     line-height: 20px;
     padding-top: 15px;
     padding-bottom: 15px;
   }
+
   .navbar-toggler {
     border-bottom-color: rgb(221, 221, 221);
-    color: rgb(51,51,51);
+    color: rgb(51, 51, 51);
   }
+
   .navbar-toggler:focus {
     background: rgb(221, 221, 221);
   }
@@ -80,11 +88,11 @@
 }
 
 .navbar-toggler-icon {
-  color: rgb(51,51,51);
+  color: rgb(51, 51, 51);
 }
 
 .dropdown-item {
-  > a {
+  >a {
     color: black;
     text-decoration: none;
   }
@@ -92,5 +100,13 @@
 
 .dropdown-menu {
   left: initial;
-  right: 0; /* add right with 0 or a low pixel value */
+  right: 0;
+  /* add right with 0 or a low pixel value */
+}
+
+.escape-container {
+  left: calc(-1 * (100vw - 100%));
+  position: absolute;
+  width: 100vw;
+  right: calc(-1 * (100vw - 100%));
 }

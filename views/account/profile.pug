@@ -17,15 +17,10 @@ block content
     .form-group.row
       label.col-md-3.col-form-label.font-weight-bold.text-right Gender
       .col-sm-6
-        label.radio.col-sm-3
-          input(type='radio', checked=user.profile.gender=='male', name='gender', value='male', data-toggle='radio')
-          span.radio-Label Male
-        label.radio.col-sm-3
-          input(type='radio', checked=user.profile.gender=='female', name='gender', value='female', data-toggle='radio')
-          span.radio-Label Female
-        label.radio.col-sm-3
-          input(type='radio', checked=user.profile.gender=='other', name='gender', value='other', data-toggle='radio')
-          span.radio-Label Other
+        select.col-sm-5(name='gender', style='margin-top:8px;')
+          option(value='male', selected=user.profile.gender=='male') Male
+          option(value='female', selected=user.profile.gender=='female') Female
+          option(value='other', selected=user.profile.gender=='other') Other
     .form-group.row
       label.col-md-3.col-form-label.font-weight-bold.text-right(for='location') Location
       .col-md-7

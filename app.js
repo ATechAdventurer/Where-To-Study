@@ -152,7 +152,7 @@ app.get('/api', apiController.getApi);
 //app.post('/api/twitter', passportConfig.isAuthenticated, passportConfig.isAuthorized, apiController.postTwitter);
 app.get('/api/upload', apiController.getFileUpload);
 app.post('/api/upload', upload.single('myFile'), apiController.postFileUpload);
-
+app.post('/api/createPlace', apiController.createPlace);
 /**
  * OAuth authentication routes. (Sign in)
  */

@@ -33,14 +33,15 @@ exports.postFileUpload = (req, res) => {
 };
 
 exports.createPlace = (req, res) => {
-  if(!req.body.token){
+  /*if(!req.body.token){
     res.status(401).send({ error : "missing token"});
-  }
-  if(req.body.token != "5678"){
+  }*/
+  /*if(req.body.token != "5678"){
     res.status(401).send({error: "unauthorized token"});
-  }
+  }*/
   if(req.body.token == "5678"){
-    PlaceController.addnewPlaces(req, res, null, true);
+    res.status(200).send("Test");
+    //PlaceController.addnewPlaces(req, res, null, true);
   }
 }
 

@@ -57,5 +57,5 @@ exports.addnewPlaces = (req, res, next, api = false) => {
                 
             })
         }
-    };
+    });
 }

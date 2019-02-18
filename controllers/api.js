@@ -6,6 +6,9 @@ const PlaceController = require('./place');
 
 const axios = require('axios');
 
+
+
+
 /**
  * GET /api
  * List of API examples.
@@ -15,6 +18,8 @@ exports.getApi = (req, res) => {
     title: 'API Examples'
   });
 };
+
+
 
 /**
  * GET /api/upload

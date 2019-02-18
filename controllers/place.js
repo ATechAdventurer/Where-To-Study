@@ -1,4 +1,6 @@
-const { promisify } = require('util');
+const {
+    promisify
+} = require('util');
 const Place = require('../models/Place');
 const User = require('../models/User');
 const toTitleCase = require('../utils/toTitleCase');
@@ -9,9 +11,9 @@ const toTitleCase = require('../utils/toTitleCase');
  * Places page.
  */
 exports.getPlaces = (req, res) => {
-    res.render('places/index', {
-        title: 'Places'
-    });
+  res.render('places/index', {
+    title: 'Places'
+  });
 };
 
 /** 
@@ -19,23 +21,39 @@ exports.getPlaces = (req, res) => {
  * Add Place page
  */
 
- exports.newPlaces = (req, res) => {
-     res.render('places/create', {
-         title: "New Place"
-     })
- }
+exports.newPlaces = (req, res) => {
+    res.render('places/create', {
+        title: "New Place"
+    })
+}
 
 /**
  * POST /places/create
  * Create a new local account.
  */
-exports.addnewPlaces = (req, res, next, api = false) => {
+exports.addnewPlaces = (req, res, next) => {
     //TODO: Add validation
-    User.findOne({ email: req.body.email }, (err, foundUser) => {
-        if (err) { return next(err); }
-        if (!foundUser) { return next("Please login") }
+    User.findOne({
+        email: req.body.email
+    }, (err, foundUser) => {
+        if (err) {
+            req.flash("Error");
+            return next(err);
+        }
+        if (!foundUser) {
+            req.flash("error");
+            return next("Please login")
+        }
         if (foundUser) {
-            let { title, description, rating, location, address, website, tags } = req.body;
+            let {
+                title,
+                description,
+                rating,
+                location,
+                address,
+                website,
+                tags
+            } = req.body;
             const place = new Place({
                 title,
                 description,
@@ -47,13 +65,13 @@ exports.addnewPlaces = (req, res, next, api = false) => {
                 submitedBy: foundUser._id
             });
             Place.save((err) => {
-                if(api == true){
-                    res.status(201).send({msg: "success"});
-                }else{
-                    if (err) { return next(err); }
-                    res.redirect('/places');
+
+                if (err) {
+                    return next(err);
                 }
-                
+                res.redirect('/places');
+
+
             })
         }
     });
